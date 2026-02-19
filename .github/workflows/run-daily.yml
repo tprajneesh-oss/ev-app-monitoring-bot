@@ -21,13 +21,23 @@ jobs:
       - name: Install libs
         run: pip install pandas openpyxl
 
-      - name: Install Android Emulator
+      - name: Run Emulator and Install App
         uses: reactivecircus/android-emulator-runner@v2
         with:
           api-level: 30
           arch: x86_64
           profile: pixel_6
-          script: echo "Emulator started"
+          script: |
+            adb install apk/statiq.apk
+            adb shell pm list packages | grep statiq
+
+      # - name: Install Android Emulator
+      #   uses: reactivecircus/android-emulator-runner@v2
+      #   with:
+      #     api-level: 30
+      #     arch: x86_64
+      #     profile: pixel_6
+      #     script: echo "Emulator started"
 
       - name: Generate fake app data
         run: python appium-tests/fake_app_data.py
