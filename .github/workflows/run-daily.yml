@@ -25,3 +25,9 @@ jobs:
       with:
         name: EV-Report
         path: EV_Daily_Report.xlsx
+        
+    - name: Send Email
+        run: python python-report/send_email.py
+      env:
+        EMAIL_USER: ${{ secrets.EMAIL_USER }}
+        EMAIL_PASS: ${{ secrets.EMAIL_PASS }}
