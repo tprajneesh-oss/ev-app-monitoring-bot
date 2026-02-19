@@ -21,7 +21,7 @@ jobs:
     - run: python appium-tests/fake_app_data.py
     - run: python python-report/generate_report.py
 
-    - uses: actions/upload-artifact@v3
+    - uses: actions/upload-artifact@v4
       with:
         name: EV-Report
         path: EV_Daily_Report.xlsx
